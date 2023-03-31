@@ -11,12 +11,11 @@ fn main() {
         process::exit(1);
     });
 
-    let lines = fs::read_to_string(&args.file_path).expect(format!("Could not read file {}", &args.file_path).as_str());
+    if let Err(e) = run(args) {
+        println!("An error occurred while running the application: {e}");
+        process::exit(1);
+    }
 
-    println!("Searching file {} using {}", &args.query, &args.file_path);
-    println!("File lines are:\n{}", lines);
-
-    run(args);
 }
 
 #[derive(Debug, PartialEq, Clone)]
