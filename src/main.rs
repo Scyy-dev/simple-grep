@@ -15,6 +15,8 @@ fn main() {
 
     println!("Searching file {} using {}", &args.query, &args.file_path);
     println!("File lines are:\n{}", lines);
+
+    run(args);
 }
 
 #[derive(Debug, PartialEq, Clone)]
@@ -32,4 +34,8 @@ impl Args {
     }
 }
 
+fn run(args: Args) -> Result<(), Box<dyn Error>> {
+    let contents = fs::read_to_string(&args.file_path)?;
+    println!("file contents are:\n{}", contents);
+    Ok(())
 }
