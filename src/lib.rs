@@ -21,3 +21,25 @@ pub fn run(args: Args) -> Result<(), Box<dyn Error>> {
     println!("file contents are:\n{}", contents);
     Ok(())
 }
+
+pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn simple_result() {
+        let query = "ipsum";
+        let contents = "\
+Lorem ipsum dolor sit amet.
+Donec tempus felis leo.
+Nulla semper, massa in ipsum.
+Fusce felis mauris.
+Sed in erat luctus.";
+
+        assert_eq!(vec!["Lorem ipsum dolor sit amet.", "Nulla semper, massa in ipsum."], search(query, contents));
+    }
+
+}
